@@ -9,4 +9,8 @@ class Recaudacion extends Eloquent  {
         return $this->belongsTo('Recaudacion', 'recaudacion_id');
     }
 
+    public function sucursal(){
+        return $this->hasOne('Sucursal','id', 'sucursal_id');
+    }
+
 }

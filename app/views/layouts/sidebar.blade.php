@@ -20,6 +20,9 @@
                 <li class="">
                     <a href="{{ url('admin/home') }}"><span>Home</span></a>
                 </li>
+                <li class="">
+                    <a href="{{ url('admin/sucursales/lista') }}"><span>Sucursales</span></a>
+                </li>
                 <li class="treeview">
                     <a href="#">
                         <span>Usuarios</span>

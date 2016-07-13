@@ -5,8 +5,9 @@ class RecaudacionController extends BaseController
 
     public function ListaRecaudaciones(){
 
-        $filter = DataFilter::source(new Recaudacion);
+        $filter = DataFilter::source(Recaudacion::with('sucursal'));
         $filter->attributes(array('class'=>'form-inline'));
+        $filter->add('sucursal.nombre', 'Nombre Sucursal', 'text');
         $filter->add('fecha','Fecha','daterange')->format('d/m/Y', 'es');
         $filter->submit('Buscar');
         $filter->build();
@@ -20,6 +21,7 @@ class RecaudacionController extends BaseController
     }
 
     public function CrudRecaudaciones(){
+        $sucursales = Sucursal::lists('nombre', 'id');
         $edit = DataEdit::source(new Recaudacion());
         $edit->add('fecha','Fecha', 'date')->format('d/m/Y', 'es');
         $edit->link("admin/recaudaciones/lista","Lista Recaudaciones", "TR")->back();
@@ -27,6 +29,7 @@ class RecaudacionController extends BaseController
         $edit->add('nulos','Nulos', 'text');
         $edit->add('efectivo_real','Efectivo Real', 'text');
         $edit->add('redcompra','Redcompra', 'text');
+        $edit->add('sucursal_id','Sucursal','select')->options($sucursales);
 
         return View::make('recaudaciones.crud', compact('edit'));
     }

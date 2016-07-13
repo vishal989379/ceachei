@@ -73,6 +73,9 @@ Administración Recaudaciones
                                                              Efectivo Real
                             </th>
                             <th>
+                                            Sucursal
+                            </th>
+                            <th>
                                             Gastos
                             </th>
                             @if(Entrust::hasRole('administracion'))
@@ -91,6 +94,7 @@ Administración Recaudaciones
                                 <td>{{ $item->redcompra }}</td>
                                 <td>{{ date("d/m/Y", strtotime($item->fecha)) }}</td>
                                 <td>{{ $item->efectivo_real }}</td>
+                                <td>{{ $item->sucursal['nombre'] }}</td>
                                 <td><a href="{{ URL::to('/') }}/admin/gastos/lista/{{ $item->id }}">Ver</a></td>
                                 @if(Entrust::hasRole('administracion'))
                                     <td>

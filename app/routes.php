@@ -48,6 +48,11 @@ Route::group(array('before' => 'auth'), function()
         Route::any('/recaudaciones/crear', 'RecaudacionController@CrudRecaudaciones');
         Route::any('/recaudaciones/edit', 'RecaudacionController@CrudRecaudaciones');
 
+        //sucursales
+        Route::get('/sucursales/lista', 'SucursalesController@ListaSucursales');
+        Route::any('/sucursales/crear', 'SucursalesController@CrudSucursales');
+        Route::any('/sucursales/edit', 'SucursalesController@CrudSucursales');
+
         //Gastos
         Route::get('/gastos/lista/{recaudacion_id}', 'GastosController@ListaGastos');
         Route::any('/gastos/{recaudacion_id}/crear', 'GastosController@CrudGastos');
