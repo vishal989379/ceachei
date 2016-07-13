@@ -54,11 +54,11 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'unix_socket'   => '/Applications/MAMP/tmp/mysql/mysql.sock',
+			//'unix_socket'   => '/Applications/MAMP/tmp/mysql/mysql.sock',
 			'host'      => 'localhost',
 			'database'  => 'ceachei',
 			'username'  => 'root',
-			'password'  => 'root',//'mk73a9o3dani',
+			'password'  => 'mk73a9o3dani',//'mk73a9o3dani',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
