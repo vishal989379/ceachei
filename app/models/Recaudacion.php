@@ -6,7 +6,7 @@ class Recaudacion extends Eloquent  {
     public $timestamps = true;
 
     public function gastos(){
-        return $this->belongsTo('Recaudacion', 'recaudacion_id');
+        return $this->hasMany('Gastos', 'recaudacion_id');
     }
 
     public function sucursal(){

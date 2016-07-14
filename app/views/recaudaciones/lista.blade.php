@@ -45,6 +45,21 @@ Administración Recaudaciones
                                     </a>
                                                              Nulos
                             </th>
+                             <th>
+                                            Total Gastos
+                            </th>
+                            <th>
+                                            Total
+                            </th>
+                             <th>
+                                                                <a href="{{ URL::to('/') }}/admin/recaudaciones/lista?ord=efectivo_real">
+                                        <span class="glyphicon glyphicon-arrow-up"></span>
+                                    </a>
+                                                                    <a href="{{ URL::to('/') }}/admin/recaudaciones/lista?ord=-efectivo_real">
+                                        <span class="glyphicon glyphicon-arrow-down"></span>
+                                    </a>
+                                                             Efectivo Real
+                            </th>
                                  <th>
                                                                 <a href="{{ URL::to('/') }}/admin/recaudaciones/lista?ord=redcompra">
                                         <span class="glyphicon glyphicon-arrow-up"></span>
@@ -54,6 +69,12 @@ Administración Recaudaciones
                                     </a>
                                                              Redcompra
                             </th>
+                            <th>
+                                            Total Final
+                            </th>
+                            <th>
+                                            Diferencia Final
+                            </th>
                                  <th>
                                                                 <a href="{{ URL::to('/') }}/admin/recaudaciones/lista?ord=fecha">
                                         <span class="glyphicon glyphicon-arrow-up"></span>
@@ -62,15 +83,6 @@ Administración Recaudaciones
                                         <span class="glyphicon glyphicon-arrow-down"></span>
                                     </a>
                                                              Fecha
-                            </th>
-                                 <th>
-                                                                <a href="{{ URL::to('/') }}/admin/recaudaciones/lista?ord=efectivo_real">
-                                        <span class="glyphicon glyphicon-arrow-up"></span>
-                                    </a>
-                                                                    <a href="{{ URL::to('/') }}/admin/recaudaciones/lista?ord=-efectivo_real">
-                                        <span class="glyphicon glyphicon-arrow-down"></span>
-                                    </a>
-                                                             Efectivo Real
                             </th>
                             <th>
                                             Sucursal
@@ -91,9 +103,13 @@ Administración Recaudaciones
                                 <td>{{ $item->id }}</td>
                                 <td>{{ $item->registro }}</td>
                                 <td>{{ $item->nulos }}</td>
-                                <td>{{ $item->redcompra }}</td>
-                                <td>{{ date("d/m/Y", strtotime($item->fecha)) }}</td>
+                                <td>{{ $item->gastos()->sum('monto') }}</td>
+                                <td>{{ ($item->registro - $item->nulos - $item->gastos()->sum('monto')) }}</td>
                                 <td>{{ $item->efectivo_real }}</td>
+                                <td>{{ $item->redcompra }}</td>
+                                <td>{{ ($item->efectivo_real + $item->redcompra) }}</td>
+                                <td>{{ ($item->efectivo_real + $item->redcompra) - ($item->registro - $item->nulos - $item->gastos()->sum('monto')) }}</td>
+                                <td>{{ date("d/m/Y", strtotime($item->fecha)) }}</td>
                                 <td>{{ $item->sucursal['nombre'] }}</td>
                                 <td><a href="{{ URL::to('/') }}/admin/gastos/lista/{{ $item->id }}">Ver</a></td>
                                 @if(Entrust::hasRole('administracion'))

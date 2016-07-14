@@ -38,6 +38,10 @@ class CreateSucursalTable extends Migration {
 	{
 		//
 		Schema::drop('sucursal');
+
+        Schema::table('recaudacion_diaria', function(Blueprint $table) {
+            $table->dropForeign('sucursal_id');
+        });
 	}
 
 }
