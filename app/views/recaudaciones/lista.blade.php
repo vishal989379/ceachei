@@ -101,14 +101,14 @@ Administración Recaudaciones
                         @foreach ($grid->data as $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
-                                <td>{{ $item->registro }}</td>
-                                <td>{{ $item->nulos }}</td>
-                                <td>{{ $item->gastos()->sum('monto') }}</td>
-                                <td>{{ ($item->registro - $item->nulos - $item->gastos()->sum('monto')) }}</td>
-                                <td>{{ $item->efectivo_real }}</td>
-                                <td>{{ $item->redcompra }}</td>
-                                <td>{{ ($item->efectivo_real + $item->redcompra) }}</td>
-                                <td>{{ ($item->efectivo_real + $item->redcompra) - ($item->registro - $item->nulos - $item->gastos()->sum('monto')) }}</td>
+                                <td>{{ number_format($item->registro, 0, '', '.') }}</td>
+                                <td>{{ number_format($item->nulos, 0, '', '.') }}</td>
+                                <td>{{ number_format($item->gastos()->sum('monto'), 0, '', '.') }}</td>
+                                <td>{{ number_format(($item->registro - $item->nulos - $item->gastos()->sum('monto')), 0, '', '.') }}</td>
+                                <td>{{ number_format($item->efectivo_real, 0, '', '.') }}</td>
+                                <td>{{ number_format($item->redcompra, 0, '', '.') }}</td>
+                                <td>{{ number_format(($item->efectivo_real + $item->redcompra), 0, '', '.') }}</td>
+                                <td>{{ number_format(($item->efectivo_real + $item->redcompra) - ($item->registro - $item->nulos - $item->gastos()->sum('monto')), 0, '', '.') }}</td>
                                 <td>{{ date("d/m/Y", strtotime($item->fecha)) }}</td>
                                 <td>{{ $item->sucursal['nombre'] }}</td>
                                 <td><a href="{{ URL::to('/') }}/admin/gastos/lista/{{ $item->id }}">Ver</a></td>

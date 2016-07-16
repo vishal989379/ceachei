@@ -78,8 +78,9 @@ Crear Administrador/Recepción
                 <label class="control-label" for="types">Rol</label>
                 <div class="controls">
                     <select class="form-control" name="rol">
-                        <option value="7">Administrador</option>
-                        <option value="8">Recepción</option>
+                        @foreach($roles as $rol)
+                            <option value="{{ $rol->id }}">{{ $rol->name }}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>

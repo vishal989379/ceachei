@@ -38,13 +38,21 @@ class UsuarioController extends BaseController
 
     public function CrearRoles(){
 
-        $admin = new Role();
+        /*$admin = new Role();
         $admin->name         = 'administracion';
         $admin->save();
 
         $secretaria = new Role();
         $secretaria->name         = 'recepcion';
         $secretaria->save();
+
+        $secretaria = new Role();
+        $secretaria->name         = 'jefe_local';
+        $secretaria->save();
+
+        $secretaria = new Role();
+        $secretaria->name         = 'empleado';
+        $secretaria->save();*/
     }
 
 

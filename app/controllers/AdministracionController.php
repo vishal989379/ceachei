@@ -6,9 +6,7 @@ class AdministracionController extends BaseController
 
     public function ListarAdministracion(){
 
-        $user = Usuario::join('assigned_roles', 'assigned_roles.user_id','=','usuarios.id')
-                        ->where('assigned_roles.role_id',8)
-                        ->orWhere('assigned_roles.role_id', 7);
+        $user = Usuario::join('assigned_roles', 'assigned_roles.user_id','=','usuarios.id');
 
         $filter = DataFilter::source($user);
         $filter->attributes(array('class'=>'form-inline'));
@@ -28,9 +26,8 @@ class AdministracionController extends BaseController
     }
 
     public function GetCrearAdministracion(){
-        $planes = Planes::all();
-        $roles = array(7 => 'Administrador', 8 => 'Recepción');
-        return View::make('administracion.crear', compact('planes'));
+        $roles = Role::all();
+        return View::make('administracion.crear', compact('roles'));
     }
 
     public function PostCrearAdministracion(){

@@ -2,9 +2,9 @@
 @section('head')
 @stop
 @section('title')
-Administración de Usuarios Administrador/Recepción
+Administración de Personal
     <div class="pull-right">
-        <a href="{{ URL::to('/') }}/admin/administracion/crear" class="btn btn-success">Agregar Administrador/Recepción</a>
+        <a href="{{ URL::to('/') }}/admin/administracion/crear" class="btn btn-success">Agregar Personal</a>
     </div>
 @stop
 @section('sidebar')

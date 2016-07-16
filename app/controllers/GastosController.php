@@ -11,7 +11,7 @@ class GastosController extends BaseController
         $grid = DataGrid::source($filter);
         $grid->attributes(array("class"=>"table table-hover"));
         $grid->add('id','ID', true);
-        $grid->add('monto','Monto', true);
+        $grid->add('{{ number_format($monto, 0, "", ".") }}','Monto', true);
         $grid->add('descripcion','Descripción', true);
         $grid->add('choices','B/F', true);
         $grid->add('num_doc','Numero de Documento', true);
