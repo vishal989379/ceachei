@@ -32,7 +32,8 @@ class UsuarioController extends BaseController
 
 
     public function Home(){
-            $recaudaciones = Recaudacion::where(DB::raw('MONTH(fecha)'), date('n'))->get();
+            $recaudaciones = Recaudacion::selectRaw('id, sum(efectivo_real) as efectivo, fecha')
+                        ->where(DB::raw('MONTH(fecha)'), date('n'))->get();
                 return View::make('home' , compact('recaudaciones'));
     }
 

@@ -33,7 +33,7 @@ $(function () {
       @foreach($recaudaciones as $rec)
       {
         id: {{ $rec->id }},
-        title: 'Efectivo: {{ $rec->efectivo_real }}',
+        title: 'Efectivo: {{ $rec->efectivo }}',
         start: '{{ $rec->fecha }}'
       },
       @endforeach
