@@ -9,7 +9,6 @@
 @stop
 @section('content')
 <script type="text/javascript">
-
 $(function () {
  /* initialize the calendar
      -----------------------------------------------------------------*/
@@ -21,8 +20,7 @@ $(function () {
     $('#horario').fullCalendar({
       header: {
         left: 'prev,next today',
-        center: 'title',
-        right: 'month,agendaWeek,agendaDay'
+        center: 'title'
       },
       buttonText: {
         today: 'Hoy',
@@ -32,16 +30,16 @@ $(function () {
       },
       //Random default events
       events: [
+      @foreach($recaudaciones as $rec)
       {
-        id: 999,
-        title: 'All Day Event',
-        start: '2016-06-01'
-      }
+        id: {{ $rec->id }},
+        title: 'Efectivo: {{ $rec->efectivo_real }}',
+        start: '{{ $rec->fecha }}'
+      },
+      @endforeach
       ],
       lang:'es',
-      defaultView:'agendaWeek',
-      minTime: "08:30:00",
-      maxTime: "21:30:00",
+      defaultView:'month',
       editable: false,
       allDaySlot: false,
       droppable: true, // this allows things to be dropped onto the calendar !!!
@@ -98,14 +96,20 @@ $(function () {
   @if(Entrust::hasRole('administracion'))
   <div class="row">
     <div class="col-md-12">
-      <div class="box box-primary">
-        <div class="box-body no-padding">
-          <!-- THE CALENDAR -->
-          <div id="horario"></div>
-        </div>
-        <!-- /.box-body -->
+      <div class="col-md-2">
       </div>
-      <!-- /. box -->
+      <div class="col-md-8">
+        <div class="box box-primary">
+          <div class="box-body no-padding">
+            <!-- THE CALENDAR -->
+            <div id="horario"></div>
+          </div>
+          <!-- /.box-body -->
+        </div>
+        <!-- /. box -->
+      </div>
+      <div class="col-md-2">
+      </div>
     </div>
   </div>
   @endif

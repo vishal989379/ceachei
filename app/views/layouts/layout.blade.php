@@ -30,13 +30,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <![endif]-->
 
     {{ Rapyd::styles() }}
-</head>
-<script src="{{ asset ("lib/admin-lte/plugins/jQuery/jQuery-2.1.4.min.js") }}"></script>
 <link href="{{ asset("lib/admin-lte/dist/css/skins/skin-blue.min.css")}}" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="{{ asset("lib/admin-lte/plugins/fullcalendar/fullcalendar.min.css")}}" >
+<script src="{{ asset ("lib/admin-lte/plugins/jQuery/jQuery-2.1.4.min.js") }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
 <script src="{{ asset("lib/admin-lte/plugins/fullcalendar/fullcalendar.min.js")}}"></script>
 <script src="http://fullcalendar.io/js/fullcalendar-2.9.0/lang-all.js"></script>
+</head>
 <body class="skin-blue">
 <input type="hidden" id="base_url" value="{{ url('/') }}" />
 <div class="wrapper">
@@ -73,9 +73,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </div><!-- ./wrapper -->
 
 <!-- REQUIRED JS SCRIPTS -->
-
-<!-- jQuery 2.1.3 -->
-<script src="{{ asset ("lib/admin-lte/plugins/jQuery/jQuery-2.1.4.min.js") }}"></script>
 <script src="{{ asset ("lib/admin-lte/plugins/datepicker/bootstrap-datepicker.js") }}"></script>
 <!-- Bootstrap 3.3.2 JS -->
 <script src="{{ asset ("lib/admin-lte/bootstrap/js/bootstrap.min.js") }}" type="text/javascript"></script>

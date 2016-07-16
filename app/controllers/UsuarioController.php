@@ -1,5 +1,4 @@
 <?php
-
 class UsuarioController extends BaseController
 {
 	//siempre action_
@@ -33,7 +32,8 @@ class UsuarioController extends BaseController
 
 
     public function Home(){
-            return View::make('home' , compact('bodega_activos', 'admin_activos', 'recepcion_activos'));
+            $recaudaciones = Recaudacion::where(DB::raw('MONTH(fecha)'), date('n'))->get();
+                return View::make('home' , compact('recaudaciones'));
     }
 
     public function CrearRoles(){
