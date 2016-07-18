@@ -14,9 +14,8 @@ class RecaudacionController extends BaseController
         $filter->build();
 
         $grid = DataSet::source($filter);
-        $grid->orderBy('id','desc');
         $grid->paginate(10);
-        $grid->orderBy('fecha');
+        $grid->orderBy('fecha', 'desc');
         $grid->build();
 
         return View::make('recaudaciones.lista', compact('filter', 'grid'));
