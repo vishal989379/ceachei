@@ -34,7 +34,8 @@ $(function () {
       {
         id: {{ $rec->id }},
         title: 'Efectivo: {{ $rec->efectivo }}',
-        start: '{{ $rec->fecha }}'
+        start: '{{ $rec->fecha }}',
+        allDay: true
       },
       @endforeach
       ],
