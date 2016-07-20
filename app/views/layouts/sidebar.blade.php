@@ -45,6 +45,20 @@
                         </li>
                     </ul>
                 </li>
+                 <li class="treeview">
+                    <a href="#">
+                        <span>Inventario</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="">
+                            <a href="{{ url('admin/proveedores/lista') }}" class="" alt="Proveedores"><i class="fa fa-industry"></i><span>Proveedores</span></a>
+                        </li>
+                        <li class="">
+                            <a href="{{ url('admin/productos/lista') }}" class="" alt="Productos"><i class="fa fa-industry"></i><span>Productos</span></a>
+                        </li>
+                    </ul>
+                </li>
             @endif
         </ul><!-- /.sidebar-menu -->
     </section>

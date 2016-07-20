@@ -57,6 +57,16 @@ Route::group(array('before' => 'auth'), function()
         Route::get('/gastos/lista/{recaudacion_id}', 'GastosController@ListaGastos');
         Route::any('/gastos/{recaudacion_id}/crear', 'GastosController@CrudGastos');
         Route::any('/gastos/{recaudacion_id}/edit', 'GastosController@CrudGastos');
+
+        //Proveedores
+        Route::get('/proveedores/lista', 'ProveedorController@ListaProveedores');
+        Route::any('/proveedores/crear', 'ProveedorController@CrudProveedores');
+        Route::any('/proveedores/edit', 'ProveedorController@CrudProveedores');
+
+        //Productos
+        Route::get('/productos/lista', 'ProductosController@ListaProductos');
+        Route::any('/productos/crear', 'ProductosController@CrudProductos');
+        Route::any('/productos/edit', 'ProductosController@CrudProductos');
     });
 });
 
