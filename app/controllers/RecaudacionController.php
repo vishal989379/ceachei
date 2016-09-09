@@ -6,7 +6,7 @@ class RecaudacionController extends BaseController
     public function ListaRecaudaciones(){
 
         //print_r(Recaudacion::with('sucursal','gastos')->get()->toArray());
-        $filter = DataFilter::source(Recaudacion::with('sucursal','gastos'));
+        $filter = DataFilter::source(Recaudacion::with('sucursal','gastos')->orderBy('fecha', 'desc'));
         $filter->attributes(array('class'=>'form-inline'));
         $filter->add('sucursal.nombre', 'Nombre Sucursal', 'text');
         $filter->add('fecha','Fecha','daterange')->format('d/m/Y', 'es');
@@ -15,7 +15,6 @@ class RecaudacionController extends BaseController
 
         $grid = DataSet::source($filter);
         $grid->paginate(10);
-        $grid->orderBy('fecha', 'desc');
         $grid->build();
 
         return View::make('recaudaciones.lista', compact('filter', 'grid'));
@@ -36,6 +35,29 @@ class RecaudacionController extends BaseController
         return View::make('recaudaciones.crud', compact('edit'));
     }
 
+    public function ListaInformeMensual(){
+        $sucursales = Sucursal::lists('nombre', 'id');
+        $sucursal_id = Input::get('sucursal_id');
+        $date = Input::get('date', null);
+        $informe = array();
+        if($date != null){
+            $month = $month = date("n");
+            $informe = Recaudacion::selectRaw('id, sum(efectivo_real) as efectivo, fecha')
+                        ->where(DB::raw('MONTH(fecha)'), $month )->groupBy('fecha')->get();
+        }else{
+            $date = date('Y-m-d');
+            $month = date("m", strtotime($date));
+            $informe = Recaudacion::selectRaw('id, sum(efectivo_real) as efectivo, fecha')
+                        ->where(DB::raw('MONTH(fecha)'), $month)->groupBy('fecha')->get();
+        }
 
+        return View::make('recaudaciones.informe_mensual', compact('sucursales','informe',''));
+    }
+
+    public function ListaInformeAnual(){
+        $sucursales = Sucursal::lists('nombre', 'id');
+
+        return View::make('recaudaciones.informe_anual', compact('sucursales'));
+    }
 
 }

@@ -43,6 +43,12 @@
                         <li class="">
                             <a href="{{ url('admin/recaudaciones/lista') }}" class="" alt="Ingresos"><i class="fa fa-hand-o-left"></i><span>Recaudación</span></a>
                         </li>
+                        <li class="">
+                            <a href="{{ url('admin/recaudaciones/informe_mensual') }}" class="" alt="Ingresos"><i class="fa fa-hand-o-left"></i><span>Informe Mensual</span></a>
+                        </li>
+                        <li class="">
+                            <a href="{{ url('admin/recaudaciones/informe_anual') }}" class="" alt="Ingresos"><i class="fa fa-hand-o-left"></i><span>Informe Anual</span></a>
+                        </li>
                     </ul>
                 </li>
                  <li class="treeview">

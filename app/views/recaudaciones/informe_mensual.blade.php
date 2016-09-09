@@ -18,7 +18,19 @@ Lista Gastos
     <div class="col-xs-12">
         <div class="box">
             <div class="box-body table-responsive no-padding">
-               {{ $grid }}
+               <table class="table">
+                <thead>
+                    <tr>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        
+                    </tr>
+                </tbody>
+
+
+               </table>
             </div>
         </div>
     </div>

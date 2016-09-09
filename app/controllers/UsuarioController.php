@@ -33,10 +33,39 @@ class UsuarioController extends BaseController
 
     public function Home(){
 
-            $recaudaciones = Recaudacion::selectRaw('id, sum(efectivo_real) as efectivo, fecha')
-                        ->where(DB::raw('MONTH(fecha)'), date('n'))->groupBy('fecha')->get();
+            $date = Input::get('date', null);
+            $operation = Input::get('operation', null);
+            $sucu = Input::get('sucursal', null);
+            $sucursales = Sucursal::all();
 
-                return View::make('home' , compact('recaudaciones'));
+            if($date != null){
+                $date = $this->addDayswithdate($date, $operation);
+                $month = date("m", strtotime($date));
+                $recaudaciones = Recaudacion::selectRaw('id, sum(efectivo_real) as efectivo, fecha')
+                        ->where(DB::raw('MONTH(fecha)'), $month)->groupBy('fecha');
+            }else{
+                $date = date('Y-m-d');
+                $month = date("m", strtotime($date));
+                $recaudaciones = Recaudacion::selectRaw('id, sum(efectivo_real) as efectivo, fecha')
+                        ->where(DB::raw('MONTH(fecha)'), $month)->groupBy('fecha');
+            }
+
+            if($sucu != null && $sucu != 0){
+                $recaudaciones = $recaudaciones->where('sucursal_id', $sucu);
+            }
+
+            $recaudaciones = $recaudaciones->get();
+
+            return View::make('home' , compact('recaudaciones', 'month', 'date', 'sucursales', 'sucu'));
+            
+    }
+
+    function addDayswithdate($date,$days){
+        if($days == null){
+            return date('Y-m-d', strtotime($date));
+        }else{
+            return date("Y-m-d", strtotime($days." months", strtotime($date)));    
+        }
     }
 
     public function CrearRoles(){

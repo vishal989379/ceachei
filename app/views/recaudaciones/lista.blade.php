@@ -88,6 +88,9 @@ Administración Recaudaciones
                                             Sucursal
                             </th>
                             <th>
+                                            Observación
+                            </th>
+                            <th>
                                             Gastos
                             </th>
                             @if(Entrust::hasRole('administracion'))
@@ -111,6 +114,7 @@ Administración Recaudaciones
                                 <td>{{ number_format(($item->efectivo_real + $item->redcompra) - ($item->registro - $item->nulos - $item->gastos()->sum('monto')), 0, '', '.') }}</td>
                                 <td>{{ date("d/m/Y", strtotime($item->fecha)) }}</td>
                                 <td>{{ $item->sucursal['nombre'] }}</td>
+                                <td>{{ $item->observacion }}</td>
                                 <td><a href="{{ URL::to('/') }}/admin/gastos/lista/{{ $item->id }}">Ver</a></td>
                                 @if(Entrust::hasRole('administracion'))
                                     <td>

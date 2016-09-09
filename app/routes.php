@@ -25,6 +25,7 @@ Route::post('/','UsuarioController@postLogin');
 Route::group(array('before' => 'auth'), function()
 {
     Route::group(array('prefix' => 'admin'), function(){
+
         Route::get('/home','UsuarioController@Home');
 
         //ADMINISTRACIÓN
@@ -47,6 +48,10 @@ Route::group(array('before' => 'auth'), function()
         Route::get('/recaudaciones/lista', 'RecaudacionController@ListaRecaudaciones');
         Route::any('/recaudaciones/crear', 'RecaudacionController@CrudRecaudaciones');
         Route::any('/recaudaciones/edit', 'RecaudacionController@CrudRecaudaciones');
+
+        //recaudacion informes
+        Route::get('/recaudaciones/informe-mensual', 'RecaudacionController@ListaInformeMensual');
+        Route::get('/recaudaciones/informe-anual', 'RecaudacionController@ListaInformeAnual');
 
         //sucursales
         Route::get('/sucursales/lista', 'SucursalesController@ListaSucursales');

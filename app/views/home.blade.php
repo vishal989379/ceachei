@@ -5,7 +5,7 @@
     @parent
 @stop
 @section('title')
-  Panel de Control
+  Panel de Control 
 @stop
 @section('content')
 <script type="text/javascript">
@@ -13,13 +13,16 @@ $(function () {
  /* initialize the calendar
      -----------------------------------------------------------------*/
     //Date for the calendar events (dummy data)
-    var date = new Date();
-    var d = date.getDate(),
+    //var date = new Date();
+    //console.log(date);
+    /*var d = date.getDate(),
         m = date.getMonth(),
-        y = date.getFullYear();
+        y = date.getFullYear();*/
     $('#horario').fullCalendar({
+      defaultDate: moment('{{ $date }}'),
       header: {
-        left: 'prev,next today',
+        left: ' today',
+        right: '',
         center: 'title'
       },
       buttonText: {
@@ -43,7 +46,7 @@ $(function () {
       defaultView:'month',
       editable: false,
       allDaySlot: false,
-      droppable: true, // this allows things to be dropped onto the calendar !!!
+      droppable: false, // this allows things to be dropped onto the calendar !!!
       drop: function (date, allDay) { // this function is called when something is dropped
 
         // retrieve the dropped element's stored Event Object
@@ -96,10 +99,24 @@ $(function () {
 </script>
   @if(Entrust::hasRole('administracion'))
   <div class="row">
+    <div class="col-md-4 col-md-offset-2" id="sucursal">
+    <select class="form-control">
+      <option value="0">Todos</option>
+      @foreach($sucursales as $sucursal)
+        <option value="{{ $sucursal->id }}" @if($sucu == $sucursal->id) selected @endif>
+        {{ $sucursal->nombre }}
+        </option>
+      @endforeach
+      </select>
+    </div>
+    <div class="col-md-2">
+      <a class="btn btn-success" href="{{ URL::to('/admin/home') }}?date={{ $date }}&operation=-1"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+      <a class="btn btn-success" href="{{ URL::to('/admin/home') }}?date={{ $date }}&operation=+1"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-md-12">
-      <div class="col-md-2">
-      </div>
-      <div class="col-md-8">
+      <div class="col-md-10 col-md-offset-1">
         <div class="box box-primary">
           <div class="box-body no-padding">
             <!-- THE CALENDAR -->
@@ -109,10 +126,18 @@ $(function () {
         </div>
         <!-- /. box -->
       </div>
-      <div class="col-md-2">
-      </div>
     </div>
   </div>
   @endif
 </div>
+<script type="text/javascript">
+  
+  $('#sucursal').change(function(){
+    var url = "{{ URL::to('/admin/home') }}?date={{ $date }}&sucursal="+$('#sucursal option:selected').val();
+    window.location = url;
+
+  });
+
+
+</script>
 @stop
